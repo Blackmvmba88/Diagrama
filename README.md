@@ -1,286 +1,1217 @@
 # DIAGRAMA
 
-> Atlas de representación visual, semántica y contextual para sistemas de observación.
+## BlackMamba Lab — Universal Representation Engine
 
-Este repositorio reúne maneras de **representar valor, cambio, estructura, relaciones, contexto, incertidumbre y significado oculto**. No está limitado a gráficas de líneas: incluye representaciones lineales, circulares, radiales, hexagonales, vectoriales, topológicas, tridimensionales, jerárquicas y simbólicas.
+> **Information does not have one shape.**  
+> **Representation is part of reasoning.**  
+> **Meaning must survive the projection.**
 
-La idea central es simple:
+`Diagrama` is a domain-agnostic engine for translating **knowledge, relationships, dimensions, states, uncertainty and intent** into the representation that best exposes their structure to a human observer.
 
-> **Elegir la geometría según la pregunta que queremos responder.**
+It is not a chart library.
 
----
+It is not an infographic generator.
 
-## 1. Qué es cada cosa
+It is not a wrapper around D3.js, matplotlib, Three.js or any specific renderer.
 
-| Familia | Pregunta principal | Ejemplos |
-|---|---|---|
-| **Gráfica** | ¿Cuánto? ¿Cómo cambia? | línea, barras, área, velas |
-| **Diagrama** | ¿Cómo se relaciona o funciona? | flujo, bloques, Sankey, red |
-| **Esquema** | ¿Cómo está organizado? | arquitectura, capas, blueprint |
-| **Mapa** | ¿Dónde está o cómo se distribuye? | heatmap, geográfico, topológico |
-| **Infografía** | ¿Cómo cuento una historia visual? | composición de texto + gráficas + símbolos |
-| **Notación visual** | ¿Qué significa este estado? | iconos, colores, glifos, badges |
+Those systems answer questions such as:
 
----
+```text
+Draw this line.
+Place this point here.
+Render this mesh.
+Color this region.
+```
 
-# 2. Taxonomía maestra
+**Diagrama operates one level above them.**
 
-## A — Tendencia y tiempo
+It asks:
 
-- **Línea** — evolución temporal, picos, tendencia.
-- **Área** — volumen acumulado o intensidad.
-- **Velas / candlestick** — apertura, cierre, máximos, mínimos, volatilidad.
-- **Sparkline** — microtendencia compacta.
-- **Timeline** — secuencia de eventos e hitos.
-- **Slope chart** — comparación de cambio entre dos momentos.
+```text
+What does this information mean?
+What relationships must remain visible?
+What is the observer trying to understand?
+Which dimensions are essential?
+Which may be compressed?
+What geometry exposes the hidden structure?
+What information would be lost by that projection?
+Can that loss be compensated through another perceptual channel?
+```
 
-## B — Comparación
-
-- **Barras** — comparación directa entre categorías.
-- **Barras apiladas** — total + composición interna.
-- **Lollipop** — comparación ligera y elegante.
-- **Dot plot** — diferencias precisas con poco ruido visual.
-- **Bullet chart** — valor actual contra objetivo o benchmark.
-
-## C — Proporción y composición
-
-- **Pie / pastel** — partes de un todo, pocas categorías.
-- **Donut** — proporción con espacio central para score/estado.
-- **Treemap** — magnitud jerárquica por áreas.
-- **Waffle** — porcentajes discretizados.
-- **Mosaic** — composición cruzada entre categorías.
-
-## D — Circular, radial y orbital
-
-- **Radar / spider** — perfil multidimensional.
-- **Radial bar** — magnitudes alrededor de un centro.
-- **Sunburst** — jerarquía concéntrica.
-- **Anillos concéntricos** — capas de significado o profundidad.
-- **Chord diagram** — relaciones entre categorías alrededor de un círculo.
-- **Órbitas** — centralidad, dependencia, ecosistemas.
-- **Polar chart** — variables definidas por ángulo y magnitud.
-
-## E — Vectorial y direccional
-
-- **Vector** — dirección + magnitud.
-- **Campo vectorial** — comportamiento distribuido.
-- **Quiver plot** — conjunto de flechas sobre un plano.
-- **Streamlines** — trayectorias de flujo continuo.
-- **Phase portrait** — estado dinámico y evolución de un sistema.
-
-## F — Redes y relaciones
-
-- **Network graph** — nodos y conexiones.
-- **Force-directed graph** — comunidades emergentes por proximidad.
-- **Mapa conceptual** — relaciones semánticas.
-- **Mapa mental** — expansión radial de ideas.
-- **Adjacency matrix** — relaciones entre muchos elementos sin cruces visuales.
-- **Bipartite graph** — conexiones entre dos conjuntos distintos.
-
-## G — Flujo y proceso
-
-- **Flowchart** — pasos y decisiones.
-- **Sankey** — flujo con grosor proporcional.
-- **Alluvial** — migración de categorías a través del tiempo.
-- **Swimlanes** — procesos separados por actor o subsistema.
-- **State machine** — estados y transiciones.
-- **Funnel** — conversión o pérdida progresiva.
-
-## H — Densidad, intensidad y patrones escondidos
-
-- **Heatmap** — intensidad por color.
-- **Calendar heatmap** — actividad temporal por día.
-- **Hexbin** — densidad agrupada en celdas hexagonales.
-- **Contour / isolines** — zonas de igual intensidad.
-- **Density plot** — concentración probabilística.
-- **Ridgeline** — distribución comparada de múltiples grupos.
-- **Spectrogram** — energía/frecuencia a través del tiempo.
-
-## I — Topología y territorio semántico
-
-- **Topografía semántica** — montañas y valles de relevancia/intensidad.
-- **Voronoi** — territorio asignado por proximidad.
-- **Delaunay** — conectividad espacial entre puntos próximos.
-- **Isosurfaces** — superficies de igual valor en 3D.
-- **Elevation map** — valor convertido en altura.
-- **Manifold projection** — espacio complejo reducido a 2D/3D.
-
-## J — Jerarquía
-
-- **Árbol** — padre → hijos.
-- **Dendrograma** — similitud y clustering.
-- **Icicle** — jerarquía rectangular por profundidad.
-- **Treemap** — jerarquía por área.
-- **Sunburst** — jerarquía radial.
-- **Pirámide** — niveles o prioridad.
-
-## K — 3D y multidimensional
-
-- **Scatter 3D** — tres variables espaciales.
-- **Surface 3D** — picos, valles y gradientes.
-- **Mesh** — geometría discreta de una superficie.
-- **Volume rendering** — densidad interna de un volumen.
-- **Point cloud** — estructura emergente a partir de puntos.
-- **Capas 3D / estratos** — dimensiones superpuestas.
-- **Burbujas 3D** — magnitud + posición + agrupación.
-
-## L — Simbólica y semántica
-
-- **Iconografía** — símbolos asociados a estados.
-- **Badges** — etiquetas de clasificación rápida.
-- **Semáforos** — estado por color.
-- **Glifos** — una sola figura codifica varias variables.
-- **Forma** — círculo, triángulo, cuadrado, hexágono como categoría.
-- **Tamaño** — magnitud.
-- **Color** — estado o intensidad.
-- **Brillo** — relevancia / energía.
-- **Borde** — confianza, riesgo o anomalía.
-- **Movimiento** — velocidad, dirección, urgencia.
-- **Textura** — incertidumbre, densidad o clase.
+Then — and only then — does it decide how the information should be represented.
 
 ---
 
-# 3. Diccionario visual BlackMamba Watchdog
+# The idea
 
-| Símbolo | Estado | Semántica visual |
-|---|---|---|
-| 🟢 **▲** | crecimiento | verde, ascenso |
-| 🔴 **▼** | caída | rojo, descenso |
-| ⚖️ / ☯️ | estable | equilibrio / neutralidad |
-| ⚡ | aceleración | aumento de velocidad |
-| 🔥 | breakout | ruptura de baseline |
-| 🚀 | viralidad | propagación sostenida |
-| 🟣 **✦** | actividad extraordinaria | evento raro de alto valor |
-| ⚠️ | anomalía | desviación a investigar |
-| 💎 | engagement excepcional | interacción de alta calidad |
-| ☠️ | pérdida de momentum | desaceleración / agotamiento |
+Most visualization pipelines assume:
 
-> Un símbolo representa **estado**. Una gráfica representa **comportamiento**. Una geometría representa **estructura**. Varias capas combinadas representan **contexto**.
+```text
+DATA → CHART
+```
+
+Diagrama proposes:
+
+```text
+RAW INFORMATION
+      ↓
+SEMANTIC MODEL
+      ↓
+OBSERVER INTENT
+      ↓
+REPRESENTATION CANDIDATES
+      ↓
+LOSS VALIDATION
+      ↓
+PERCEPTUAL ENCODING
+      ↓
+GEOMETRY
+      ↓
+RENDERER
+```
+
+Or, in one line:
+
+```text
+Knowledge → Semantics → Intent → Geometry → Perception
+```
+
+The renderer is the final actuator.
+
+The real intelligence happens before drawing anything.
 
 ---
 
-# 4. Selección por pregunta
+# Why this matters
 
-| Quiero entender… | Representaciones recomendadas |
+The same information can expose radically different truths depending on its representation.
+
+A timeline emphasizes **order**.
+
+A clock emphasizes **recurrence**.
+
+A helix emphasizes **recurrence plus progression**.
+
+A network emphasizes **connection**.
+
+A matrix emphasizes **exact pairwise structure**.
+
+A Sankey emphasizes **flow**.
+
+A vector field emphasizes **direction and magnitude**.
+
+A topographic surface turns intensity into **terrain**.
+
+A glyph compresses many variables into **one perceptual object**.
+
+Animation can expose **transition** that a static image hides.
+
+Sound can expose **events, urgency or periodicity** without consuming visual bandwidth.
+
+> **Changing representation can reveal knowledge that was already present in the data but invisible in the previous basis.**
+
+That is the core thesis of Diagrama.
+
+---
+
+# A computational instrument for observation
+
+A microscope changes the scale at which structure can be perceived.
+
+A telescope changes the distance at which structure can be perceived.
+
+A spectrometer separates properties that appear merged to ordinary perception.
+
+**Diagrama changes the representational basis through which information is perceived.**
+
+Its long-term objective is therefore larger than visualization:
+
+> **Build computational instruments that expand the observer's ability to detect structure, relation, transformation, uncertainty and hidden context.**
+
+---
+
+# Semantic Intermediate Representation — SIR
+
+The source of truth is never the chart.
+
+The source of truth is a representation-independent semantic model.
+
+```yaml
+entities:
+  - id: source
+    type: system
+
+  - id: target
+    type: system
+
+relations:
+  - from: source
+    to: target
+    type: influence
+    magnitude: 0.82
+    confidence: 0.91
+
+dimensions:
+  magnitude:
+    type: quantitative
+
+  confidence:
+    type: probability
+
+  direction:
+    type: vector
+
+intent:
+  primary: explain_relation
+```
+
+From that same SIR, Diagrama could produce:
+
+```text
+network
+adjacency matrix
+vector diagram
+Sankey
+radial relation map
+3D spatial scene
+symbolic glyph
+animated transition
+sonified state
+```
+
+The knowledge remains invariant.
+
+The **basis of observation** changes.
+
+---
+
+# Information primitives
+
+Diagrama does not begin with pixels. It begins with semantic primitives.
+
+## Entities
+
+```text
+people
+objects
+systems
+components
+files
+ideas
+cities
+cells
+machines
+states
+processes
+```
+
+## Quantities
+
+```text
+magnitude
+count
+rate
+probability
+energy
+cost
+time
+distance
+frequency
+confidence
+```
+
+## Relations
+
+```text
+dependency
+causality
+similarity
+ownership
+flow
+containment
+adjacency
+influence
+communication
+competition
+feedback
+```
+
+## States
+
+```text
+active
+inactive
+stable
+unstable
+growing
+falling
+critical
+unknown
+transitioning
+```
+
+## Structures
+
+```text
+sequence
+hierarchy
+network
+cycle
+field
+cluster
+manifold
+grid
+layer
+continuum
+```
+
+## Uncertainty
+
+```text
+confidence
+error
+variance
+range
+ambiguity
+missing data
+probability
+prediction
+```
+
+These are the primitives the engine reasons about.
+
+Domains are adapters at the edge.
+
+---
+
+# Intent Engine
+
+The same information should not be represented identically for every purpose.
+
+Diagrama explicitly models the observer's intention.
+
+```text
+compare
+measure
+explain
+trace
+discover
+alert
+monitor
+diagnose
+navigate
+summarize
+teach
+predict
+explore
+remember
+communicate
+```
+
+A first resolution matrix:
+
+| Intent | Preferred geometry family | Dominant perceptual channels | Typical objective |
+|---|---|---|---|
+| **Discover / Alert** | topological, spatial, density | contrast, pulse, motion | expose anomalies or emergent structure |
+| **Explain / Trace** | flow, network, state graph | width, direction, connectivity | explain how something propagates |
+| **Monitor / Observe** | polar, radial, temporal | position, size, motion | preserve situational awareness |
+| **Compare / Measure** | Cartesian, aligned matrix | position, length | maximize quantitative precision |
+| **Navigate** | topology, hierarchy, spatial map | proximity, containment | move through complex structure |
+| **Diagnose** | matrix, causal graph, layered view | contrast, relation, uncertainty | isolate causes and dependencies |
+| **Teach** | progressive diagram, narrative layers | hierarchy, annotation, motion | control cognitive load |
+| **Predict** | trajectory, probability field, phase space | direction, opacity, envelope | expose future state and uncertainty |
+
+This matrix is not a hard-coded truth.
+
+It is the beginning of the autonomous `Representation Selector`.
+
+---
+
+# Representation Selector
+
+Conceptually:
+
+```text
+representation = f(
+    semantics,
+    intent,
+    dimensionality,
+    cardinality,
+    topology,
+    uncertainty,
+    audience,
+    medium,
+    interaction,
+    loss_budget
+)
+```
+
+The selector generates candidate representations and scores them.
+
+Example:
+
+```text
+Candidate              Utility   Fidelity   Complexity
+─────────────────────────────────────────────────────
+Adjacency Matrix        0.94      0.98       0.31
+Network Graph           0.86      0.91       0.66
+Chord Diagram           0.63      0.78       0.71
+Sankey                  0.28      0.51       0.62
+```
+
+And it must be able to explain its decision:
+
+```text
+Selected: Adjacency Matrix
+
+because:
++ 2,400 entities
++ dense pairwise relations
++ exact relation lookup is important
++ topology must be preserved
+- node-link layout would create excessive edge crossings
+```
+
+A future Diagrama should not merely render.
+
+**It should justify why a representation was chosen.**
+
+---
+
+# Visual and perceptual grammar
+
+Representation is built from perceptual channels.
+
+Each channel can carry semantic information.
+
+| Channel | Possible semantic load |
 |---|---|
-| cuánto | barras, línea, dot plot |
-| cambio | línea, velas, slope, timeline |
-| velocidad | línea derivada, vector, sparkline |
-| aceleración | segunda derivada, vector, phase portrait |
-| proporción | donut, treemap, waffle |
-| relación | network, matrix, chord |
-| flujo | Sankey, alluvial, streamlines |
-| jerarquía | árbol, sunburst, treemap |
-| densidad | heatmap, hexbin, contours |
-| multidimensión | radar, glyph, scatter 3D |
-| ciclos | radial, polar, órbitas |
-| geografía | mapa, hexbin, choropleth |
-| significado oculto | capas, glifos, topografía, anillos |
-| cambio de paradigma | before/after + cambio de geometría/base |
-| incertidumbre | bandas, error bars, transparencia, textura |
+| X / Y / Z position | quantity, chronology, space, category |
+| distance | similarity, separation, dependency |
+| angle | phase, orientation, class |
+| radius | magnitude, reach, importance |
+| length | quantitative value |
+| area | magnitude |
+| volume | density or magnitude |
+| shape | category or semantic role |
+| color | state, polarity, category, intensity |
+| saturation | confidence or intensity |
+| luminosity | energy, activity, relevance |
+| opacity | uncertainty, confidence, relevance |
+| line width | strength, capacity, flow |
+| line style | relation type or uncertainty |
+| border | alert, classification, confidence |
+| texture | density, class, uncertainty |
+| connectivity | relation structure |
+| motion | change, urgency, direction |
+| velocity | rate |
+| acceleration | change of rate |
+| rotation | phase, periodicity, energy |
+| pulse | recurrence, activity, urgency |
+| depth | hierarchy or latent dimension |
+| sound | event, magnitude, anomaly, state |
+| haptics | force, threshold, urgency |
+
+A representation does not need one axis per dimension.
+
+A single glyph may encode:
+
+```text
+position = context
+size     = magnitude
+color    = state
+border   = uncertainty
+rotation = direction
+pulse    = acceleration
+opacity  = confidence
+```
+
+Seven dimensions.
+
+One object.
 
 ---
 
-# 5. Dimensiones visuales disponibles
+# Geometry families
 
-Un dato no tiene que representarse únicamente con la posición de una línea.
+Diagrama treats geometries as alternative observational spaces.
 
-Podemos codificar información mediante:
+## Cartesian
 
-1. **posición X**
-2. **posición Y**
-3. **posición Z**
-4. **ángulo**
-5. **distancia al centro**
-6. **dirección**
-7. **longitud**
-8. **área**
-9. **volumen**
-10. **tamaño**
-11. **forma**
-12. **color**
-13. **saturación**
-14. **luminosidad**
-15. **transparencia**
-16. **textura**
-17. **grosor de línea**
-18. **tipo de línea**
-19. **borde**
-20. **conectividad**
-21. **densidad**
-22. **proximidad**
-23. **movimiento**
-24. **velocidad**
-25. **aceleración**
-26. **frecuencia de pulso**
-27. **rotación**
-28. **profundidad**
-29. **oclusión**
-30. **capa / estrato**
-
-Estas variables pueden combinarse. Ejemplo de un glifo de track:
+Best for magnitude, correlation, alignment and temporal evolution.
 
 ```text
-posición   = contexto
-radio      = plays
-color      = crecimiento
-brillo     = engagement
-borde      = anomalía
-giro        = velocidad
-pulso      = aceleración
-satélite   = mercado geográfico emergente
+line
+bar
+scatter
+area
+surface
+candlestick
+```
+
+## Polar / Radial
+
+Best for cycles, periodicity, multidimensional profiles and centrality.
+
+```text
+radar
+polar plot
+radial bars
+concentric rings
+sunburst
+```
+
+## Circular / Orbital
+
+Best for closed cycles, ecosystems and center-periphery relations.
+
+```text
+chord diagrams
+orbit maps
+circular dependencies
+concentric systems
+```
+
+## Matrix
+
+Best for dense relationships and exact pairwise inspection.
+
+```text
+adjacency matrix
+heatmap
+correlation matrix
+confusion matrix
+```
+
+## Network
+
+Best for connectivity, communities, propagation and influence.
+
+```text
+node-link
+force-directed
+bipartite
+knowledge graph
+causal graph
+```
+
+## Hierarchical
+
+Best for containment, ancestry and decomposition.
+
+```text
+tree
+dendrogram
+treemap
+icicle
+sunburst
+```
+
+## Flow
+
+Best for transfer, conversion, process and state transition.
+
+```text
+Sankey
+alluvial
+funnel
+swimlane
+state machine
+```
+
+## Hexagonal
+
+Best for tiling, density and neighborhood systems.
+
+```text
+hexbin
+hex map
+cellular field
+```
+
+## Vectorial
+
+Best for magnitude plus direction.
+
+```text
+vector
+quiver
+vector field
+streamline
+phase portrait
+```
+
+## Topological
+
+Best when connectivity matters more than metric distance.
+
+```text
+topology maps
+adjacency systems
+manifolds
+persistent structures
+```
+
+## Volumetric / 3D
+
+Best for layered structure, surfaces, internal density and spatial relationships.
+
+```text
+point cloud
+mesh
+voxel volume
+isosurface
+layered scene
+```
+
+## Symbolic
+
+Best for immediate semantic recognition.
+
+```text
+icons
+badges
+glyphs
+notation systems
+semantic marks
+```
+
+## Temporal / Animated
+
+Best when transition itself is information.
+
+```text
+animated state space
+morphing representation
+trails
+pulse
+motion field
+```
+
+## Multimodal
+
+Best when visual bandwidth alone is insufficient.
+
+```text
+visual + motion
+visual + sound
+visual + haptics
+3D + interaction
+AR + spatial annotation
 ```
 
 ---
 
-# 6. Regla de oro
+# Representation transforms
 
-**No elegir una gráfica porque “se ve bonita”.**
-
-Elegirla según la estructura real de la información:
+A critical capability of Diagrama is changing the representational basis **without changing the semantic source**.
 
 ```text
-Dato → Pregunta → Relación → Geometría → Codificación → Lectura
+LINEAR
+   ↓ radialize
+RADIAL
+   ↓ spatialize
+3D
+   ↓ relationalize
+NETWORK
+   ↓ aggregate
+MATRIX
 ```
 
-Y cuando una sola geometría no alcanza:
+Candidate transforms:
 
 ```text
-CAPA 1  magnitud
-CAPA 2  tendencia
-CAPA 3  velocidad
-CAPA 4  anomalía
-CAPA 5  contexto
-CAPA 6  significado
+radialize
+flatten
+project
+cluster
+aggregate
+explode
+collapse
+layer
+normalize
+rotate
+rebase
+spatialize
+relationalize
+symbolize
+animate
+sonify
 ```
 
-Eso convierte una gráfica en un **sistema de observación**.
+Example — one semantic variable: **time**.
+
+```text
+TIMELINE
+────────────────────────►
+
+        ↓ radialize
+
+CLOCK / CYCLE
+       12
+    9   ◉   3
+        6
+
+        ↓ spatialize
+
+HELIX
+      ╱╲
+     ╱  ╲
+     ╲  ╱
+      ╲╱
+```
+
+Each basis reveals a different property:
+
+```text
+timeline → order
+circle   → recurrence
+helix    → recurrence + progression
+```
+
+Transformation is therefore not merely graphical.
+
+It can be a **knowledge operation**.
 
 ---
 
-# 7. Aplicación inmediata al Watchdog
+# Loss Validation — Conservation of Meaning
 
-Para métricas musicales:
+Every projection risks destroying information.
 
-- **Sparkline** → tendencia instantánea por track.
-- **Candlestick** → volatilidad por intervalo.
-- **Radar** → huella multidimensional del track.
-- **Heatmap** → hora × día × actividad.
-- **Hexbin** → densidad geográfica o de usuarios.
-- **Sankey** → fuente → track → engagement.
-- **Network** → ciudades / tracks / audiencias conectadas.
-- **Sunburst** → catálogo → género → release → track.
-- **Vector field** → dirección del momentum entre segmentos.
-- **Topografía** → paisaje de actividad del catálogo.
-- **Glifos** → resumen compacto de múltiples métricas.
-- **3D layers** → dimensiones ocultas superpuestas.
+A 4D state projected into 2D may lose depth.
+
+A network converted into a histogram may lose identity and connectivity.
+
+A continuous signal summarized as categories may lose local variation.
+
+A 3D structure flattened into a map may preserve adjacency but destroy metric distance.
+
+Diagrama must know this.
+
+Every transform should produce both:
+
+```text
+Representation
++
+Loss Report
+```
+
+Conceptually:
+
+```text
+T : SIR → R
+```
+
+and
+
+```text
+V(SIR, R) → LossVector
+```
+
+Where a loss vector may contain:
+
+```text
+L = {
+  identity,
+  topology,
+  metric,
+  order,
+  magnitude,
+  direction,
+  uncertainty,
+  temporal_resolution,
+  hierarchy,
+  context
+}
+```
+
+Example:
+
+```yaml
+transform: project_3d_to_2d
+classification: lossy
+
+preserved:
+  - identity
+  - topology
+  - x
+  - y
+
+lost:
+  - z_depth
+
+compensation:
+  z_depth:
+    channel: opacity
+    confidence: 0.84
+```
+
+This introduces three fundamental transformation classes:
+
+### Lossless
+
+Protected semantic invariants survive the transform.
+
+### Lossy
+
+One or more semantically relevant dimensions are discarded or compressed.
+
+### Compensated
+
+A dimension disappears from its original channel but is re-encoded through another perceptual channel.
+
+Example:
+
+```text
+Z position lost
+      ↓
+encoded as color saturation
+```
+
+The engine can therefore reason about a **loss budget**.
+
+```text
+loss_budget = f(intent, audience, medium, task)
+```
+
+A monitoring display may tolerate geometric simplification for speed.
+
+A scientific inspection may forbid loss of metric relationships.
+
+A teaching diagram may intentionally collapse detail to reduce cognitive load.
+
+The question is not:
+
+> Is information being lost?
+
+The real question is:
+
+> **Is the lost information irrelevant to the observer's current intent, or must it be preserved elsewhere?**
+
+This is one of Diagrama's core contracts.
 
 ---
 
-## Objetivo del repositorio
+# Protected invariants
 
-Construir un **lenguaje visual reusable** para que cualquier sistema de BlackMamba pueda elegir automáticamente la representación adecuada según el tipo de información observada.
+A transform may declare invariants that are not allowed to disappear.
 
-No solo mostrar datos.
+```yaml
+protected_invariants:
+  - entity_identity
+  - causal_direction
+  - hierarchy
+  - confidence
+```
 
-**Mostrar estructura, dinámica, contexto y significado.**
+A representation candidate that violates one of those invariants can be rejected automatically.
+
+```text
+Candidate: Pie Chart
+Rejected:
+✗ causal direction destroyed
+✗ entity relation topology destroyed
+```
+
+This moves Diagrama from visual recommendation toward **semantic validation**.
+
+---
+
+# Hidden dimensions
+
+Not every meaningful dimension belongs on an axis.
+
+Secondary dimensions can be expressed through:
+
+```text
+color
+shape
+opacity
+texture
+border
+layer
+motion
+frequency
+rotation
+proximity
+connectivity
+depth
+sound
+interaction
+```
+
+A layered observation can therefore preserve context beyond visible geometry:
+
+```text
+LAYER 1  magnitude
+LAYER 2  relation
+LAYER 3  temporal behavior
+LAYER 4  uncertainty
+LAYER 5  context
+LAYER 6  semantic state
+LAYER 7  prediction
+```
+
+The goal is not maximum complexity.
+
+The goal is **maximum relevant meaning per unit of cognitive load**.
+
+---
+
+# Symbol systems
+
+Symbols are first-class semantic carriers.
+
+Example generic vocabulary:
+
+| Symbol | Generic semantic role |
+|---|---|
+| ▲ | increase / ascent |
+| ▼ | decrease / descent |
+| ⚖ | equilibrium |
+| ⚡ | acceleration / sudden energy |
+| 🔥 | threshold break |
+| 🚀 | rapid propagation |
+| ✦ | extraordinary event |
+| ⚠ | anomaly / attention |
+| 💎 | exceptional quality |
+| ☠ | exhaustion / loss of momentum |
+
+These are examples, not domain rules.
+
+A domain may define its own notation:
+
+```yaml
+symbols:
+  growth:
+    glyph: "▲"
+    color: green
+
+  anomaly:
+    glyph: "⚠"
+    color: amber
+
+  exceptional:
+    glyph: "✦"
+    color: purple
+```
+
+This allows Diagrama to host reusable **semantic alphabets**.
+
+---
+
+# Domain agnosticism
+
+Diagrama should be capable of representing:
+
+```text
+financial markets
+music analytics
+molecular systems
+software architecture
+Git histories
+transport networks
+biological pathways
+mechanical systems
+knowledge graphs
+social systems
+telemetry
+astronomical systems
+supply chains
+AI model behavior
+education
+urban systems
+energy systems
+human workflows
+abstract ideas
+```
+
+Not because these domains are identical.
+
+Because they all contain combinations of:
+
+```text
+entities
+relations
+states
+quantities
+uncertainty
+space
+time
+structure
+meaning
+```
+
+Those are Diagrama's real primitives.
+
+---
+
+# Proposed architecture
+
+```text
+Diagrama/
+│
+├── core/
+│   ├── semantics/
+│   ├── entities/
+│   ├── relations/
+│   ├── dimensions/
+│   ├── uncertainty/
+│   └── ir/
+│
+├── intent/
+│   ├── compare/
+│   ├── explain/
+│   ├── discover/
+│   ├── monitor/
+│   ├── diagnose/
+│   └── navigate/
+│
+├── grammar/
+│   ├── position/
+│   ├── color/
+│   ├── shape/
+│   ├── size/
+│   ├── motion/
+│   ├── texture/
+│   ├── symbols/
+│   ├── sound/
+│   └── haptics/
+│
+├── geometries/
+│   ├── cartesian/
+│   ├── polar/
+│   ├── radial/
+│   ├── circular/
+│   ├── matrix/
+│   ├── network/
+│   ├── hierarchy/
+│   ├── flow/
+│   ├── hexagonal/
+│   ├── vector/
+│   ├── topology/
+│   └── spatial3d/
+│
+├── transforms/
+│   ├── radialize/
+│   ├── flatten/
+│   ├── project/
+│   ├── cluster/
+│   ├── aggregate/
+│   ├── layer/
+│   ├── spatialize/
+│   ├── symbolize/
+│   ├── animate/
+│   └── loss_validation/
+│
+├── selector/
+│   ├── candidates/
+│   ├── scoring/
+│   ├── constraints/
+│   └── explainability/
+│
+├── renderers/
+│   ├── svg/
+│   ├── canvas/
+│   ├── terminal/
+│   ├── webgl/
+│   ├── threejs/
+│   ├── audio/
+│   └── multimodal/
+│
+├── domains/
+│   └── adapters/
+│
+├── schemas/
+├── examples/
+├── docs/
+└── README.md
+```
+
+The domain belongs at the boundary.
+
+**The core must never become dependent on the domain.**
+
+---
+
+# First engine contract
+
+```text
+INPUT
+  Semantic IR
+  + observer intent
+  + medium constraints
+  + protected invariants
+
+PROCESS
+  analyze semantics
+  infer dimensionality
+  identify topology
+  generate representation candidates
+  estimate cognitive cost
+  evaluate semantic loss
+  compensate recoverable dimensions
+  rank candidates
+
+OUTPUT
+  selected representation
+  + perceptual encoding
+  + transform chain
+  + loss report
+  + selection explanation
+```
+
+That is the minimum viable intelligence of Diagrama.
+
+---
+
+# Principles
+
+### 1. Meaning before rendering
+
+Never choose geometry before understanding semantics.
+
+### 2. Semantic source of truth
+
+Visual state must remain traceable to the SIR.
+
+### 3. Representation is a hypothesis
+
+Every visualization claims that certain properties matter more than others.
+
+Make that claim explicit.
+
+### 4. Transformation must declare loss
+
+No projection is allowed to silently destroy relevant meaning.
+
+### 5. Preserve invariants before aesthetics
+
+Beauty cannot justify semantic corruption.
+
+### 6. Use the perceptual channel that matches the question
+
+Position for precision. Motion for change. Connectivity for relation. Sound for events. Depth only when depth adds meaning.
+
+### 7. Complexity must earn its place
+
+A dimension is added only when it carries useful information.
+
+### 8. Multiple representations may coexist
+
+One view may explain. Another may reveal. Another may measure.
+
+### 9. Domains are adapters
+
+The engine reasons about semantics, not industries.
+
+### 10. The representation should be explainable
+
+Diagrama must eventually answer:
+
+> Why am I showing you this information this way?
+
+---
+
+# Roadmap
+
+## Phase 0 — Foundation
+
+- define Semantic IR
+- define semantic primitive vocabulary
+- define geometry registry
+- define perceptual channel registry
+- define intent taxonomy
+- define protected invariants
+- define Loss Validation contract
+
+## Phase 1 — Representation intelligence
+
+- candidate generation
+- intent-to-geometry matrix
+- dimensionality analysis
+- cardinality heuristics
+- topology detection
+- semantic loss scoring
+- cognitive-cost scoring
+
+## Phase 2 — Transform engine
+
+- project
+- radialize
+- flatten
+- cluster
+- aggregate
+- layer
+- compensate lost dimensions
+- reversible transform metadata
+
+## Phase 3 — Renderers
+
+- SVG
+- terminal
+- Canvas
+- WebGL / Three.js
+- animation
+
+## Phase 4 — Multimodal representation
+
+- sonification
+- motion grammar
+- interaction grammar
+- haptic mappings
+- spatial / AR representations
+
+## Phase 5 — Autonomous representation
+
+```text
+raw information
+      ↓
+semantic extraction
+      ↓
+intent inference
+      ↓
+representation synthesis
+      ↓
+loss validation
+      ↓
+explainable rendering
+```
+
+At that point, Diagrama stops being a visualization toolkit.
+
+It becomes a **general-purpose semantic representation runtime**.
+
+---
+
+# BlackMamba Lab
+
+Diagrama was not created because another graph library was needed.
+
+It emerged from a recurring engineering problem:
+
+> Information changes character when its representation changes.
+
+Once that is recognized, the logical next step is not to collect more chart types.
+
+The logical next step is to build a system that understands **why one representation reveals what another hides**.
+
+That is what Diagrama is for.
+
+---
+
+## Final axiom
+
+```text
+The data is not the diagram.
+The diagram is not the truth.
+The diagram is a projection of truth optimized for an observer and an intent.
+
+Diagrama exists to choose that projection consciously,
+measure what it sacrifices,
+and preserve the meaning that matters.
+```
+
+**BlackMamba Lab — Diagrama**  
+*Compile meaning into perception.*
