@@ -1,0 +1,177 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://blackmamba-lab.local/diagrama/sir.schema.json",
+  "title": "Diagrama Semantic Intermediate Representation",
+  "description": "Renderer-independent semantic source model for Diagrama.",
+  "type": "object",
+  "required": ["entities"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "default": "0.1"
+    },
+    "entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "type"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "type": {"type": "string", "minLength": 1},
+          "label": {"type": "string"},
+          "attributes": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "relations": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "required": ["from", "to", "type"],
+        "properties": {
+          "id": {"type": "string"},
+          "from": {"type": "string"},
+          "to": {"type": "string"},
+          "type": {"type": "string"},
+          "directed": {"type": "boolean", "default": false},
+          "magnitude": {"type": "number"},
+          "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+          "attributes": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "dimensions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "quantitative",
+              "ordinal",
+              "categorical",
+              "temporal",
+              "spatial",
+              "vector",
+              "probability",
+              "semantic"
+            ]
+          },
+          "unit": {"type": "string"},
+          "domain": {},
+          "description": {"type": "string"}
+        },
+        "required": ["type"],
+        "additionalProperties": true
+      }
+    },
+    "states": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["entity", "state"],
+        "properties": {
+          "entity": {"type": "string"},
+          "state": {"type": "string"},
+          "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+          "timestamp": {"type": "string", "format": "date-time"},
+          "attributes": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "uncertainty": {
+      "type": "object",
+      "properties": {
+        "model": {"type": "string"},
+        "attributes": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "intent": {
+      "type": "object",
+      "properties": {
+        "primary": {
+          "type": "string",
+          "enum": [
+            "compare",
+            "measure",
+            "explain",
+            "trace",
+            "discover",
+            "alert",
+            "monitor",
+            "diagnose",
+            "navigate",
+            "summarize",
+            "teach",
+            "predict",
+            "explore",
+            "remember",
+            "communicate"
+          ]
+        },
+        "secondary": {
+          "type": "array",
+          "items": {"type": "string"},
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "protected_invariants": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {"type": "string"},
+          {
+            "type": "object",
+            "required": ["id"],
+            "properties": {
+              "id": {"type": "string"},
+              "weight": {"type": "number", "minimum": 0},
+              "min_preservation": {"type": "number", "minimum": 0, "maximum": 1}
+            },
+            "additionalProperties": true
+          }
+        ]
+      }
+    },
+    "constraints": {
+      "type": "object",
+      "properties": {
+        "medium": {
+          "type": "string",
+          "enum": ["terminal", "static_2d", "interactive_2d", "interactive_3d", "audio", "multimodal", "ar", "xr"]
+        },
+        "width": {"type": "integer", "minimum": 1},
+        "height": {"type": "integer", "minimum": 1},
+        "interactive": {"type": "boolean"},
+        "max_cognitive_cost": {"type": "number", "minimum": 0, "maximum": 1},
+        "max_semantic_loss": {"type": "number", "minimum": 0, "maximum": 1}
+      },
+      "additionalProperties": true
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}
