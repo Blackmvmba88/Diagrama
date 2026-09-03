@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "blackmamba-diagrama"
+version = "0.1.0"
+description = "Domain-agnostic semantic representation engine from BlackMamba Lab"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "numpy>=2.0",
+  "scipy>=1.14",
+  "networkx>=3.3",
+  "matplotlib>=3.9",
+  "pydantic>=2.8"
+]
+
+[project.optional-dependencies]
+analysis = [
+  "pandas>=2.2",
+  "scikit-learn>=1.5"
+]
+dev = [
+  "pytest>=8.3",
+  "ruff>=0.6"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
